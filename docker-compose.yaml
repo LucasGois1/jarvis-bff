@@ -8,7 +8,7 @@ services:
     volumes:
       - .:/home/node/app
   db:
-    image: mysql:8.0.30-debian
+    image: mariadb:10.5.8
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=chat
