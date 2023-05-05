@@ -1,0 +1,22 @@
+POST http://localhost:3000/api/chats HTTP/1.1
+Content-Type: application/json
+
+{
+    "content": "tudo bem?"
+}
+
+###
+GET http://localhost:3000/api/chats HTTP/1.1
+
+@chatId = 1d18d0fb-1f39-404c-97aa-95fb4119fc46
+
+###
+GET http://localhost:3000/api/chats/{{chatId}}/messages HTTP/1.1
+
+###
+POST http://localhost:3000/api/chats/{{chatId}}/messages HTTP/1.1
+Content-Type: application/json
+
+{
+    "content": "Testando"
+}
