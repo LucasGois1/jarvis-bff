@@ -1,0 +1,47 @@
+name: CD
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+  
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3.5.2
+
+      - name: Build and push image to Dockerhub
+        uses: docker/build-push-action@v1.1.0
+        with:
+          username: ${{secrets.DOCKER_USERNAME}}
+          password: ${{secrets.DOCKER_PASSWORD}}
+          repository: ${{secrets.DOCKER_USERNAME}}/jarvis-bff
+          tags: ${{github.sha}}, latest
+
+      - name: Setup Kustomize
+        uses: imranismail/setup-kustomize@v1
+        with:
+          version: "3.6.1"
+
+      - name: Update k8s resources
+        env:
+          DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
+        run: |
+          cd k8s
+          kustomize edit set image jarvis=$DOCKER_USERNAME/jarvis-bff:$GITHUB_SHA
+
+      - name: Commit
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+          git commit -am "Bump image tag to $GITHUB_SHA"
+
+      - name: Push
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          branch: master
