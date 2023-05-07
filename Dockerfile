@@ -5,7 +5,7 @@ COPY package.json ./
 RUN npm install --frozen-lockfile
 COPY . .
 # build
-RUN npm build
+RUN npm run build
 # remove dev dependencies
 RUN npm prune --production
 FROM node:alpine
