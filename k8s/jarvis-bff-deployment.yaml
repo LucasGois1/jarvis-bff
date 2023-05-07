@@ -5,8 +5,8 @@ metadata:
     kompose.cmd: kompose convert
     kompose.version: 1.28.0 (HEAD)
   labels:
-    io.kompose.service: app
-  name: app
+    io.kompose.service: jarvis-bff
+  name: jarvis-bff
 spec:
   replicas: 1
   selector:
