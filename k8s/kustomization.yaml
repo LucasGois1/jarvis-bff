@@ -11,5 +11,5 @@ resources:
 
 images:
 - name: jarvis
-  newName: /jarvis-bff
-  newTag: c74072d65b8f089ed63b21ee8d1ae25f6c95acca
+  newName: lucasgoisdev/jarvis-bff
+  newTag: 6e5ba249dd5fe74fd1ff8a4c72560b6acb4d8666
