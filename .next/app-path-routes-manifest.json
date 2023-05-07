@@ -1,0 +1,8 @@
+{
+  "/page": "/",
+  "/favicon.ico/route": "/favicon.ico",
+  "/api/hello/route": "/api/hello",
+  "/api/chats/route": "/api/chats",
+  "/api/chats/[chatId]/messages/route": "/api/chats/[chatId]/messages",
+  "/api/messages/[messageId]/events/route": "/api/messages/[messageId]/events"
+}
