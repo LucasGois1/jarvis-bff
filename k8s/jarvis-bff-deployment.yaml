@@ -11,7 +11,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: app
+      io.kompose.service: jarvis-bff
   strategy:
     type: Recreate
   template:
@@ -21,23 +21,22 @@ spec:
         kompose.version: 1.28.0 (HEAD)
       labels:
         io.kompose.network/jarvis-default: "true"
-        io.kompose.service: app
+        io.kompose.service: jarvis-bff
     spec:
       containers:
-        - image: app
-          name: app
+        - image: jarvis-bff
+          name: jarvis-bff
           ports:
             - containerPort: 3000
-          resources: 
+          resources:
             limits:
               cpu: "1500m"
               memory: 1024Mi
           volumeMounts:
-            - mountPath: /home/node/app
-              name: app-claim0
+            - mountPath: /home/node/jarvis-bff
+              name: jarvis-bff-claim0
       restartPolicy: Always
       volumes:
-        - name: app-claim0
+        - name: jarvis-bff-claim0
           persistentVolumeClaim:
-            claimName: app-claim0
-
+            claimName: jarvis-bff-claim0
