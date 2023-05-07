@@ -2,17 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-- app-claim0-persistentvolumeclaim.yaml
-- app-deployment.yaml
-- app-service.yaml
-- db-claim0-persistentvolumeclaim.yaml
-- db-deployment.yaml
-- jarvis-bff-default-networkpolicy.yaml
+  - app-claim0-persistentvolumeclaim.yaml
+  - app-deployment.yaml
+  - app-service.yaml
+  - db-claim0-persistentvolumeclaim.yaml
+  - db-deployment.yaml
+  - jarvis-bff-default-networkpolicy.yaml
 
 images:
-- name: app
-  newName: lucasgoisdev/jarvis-bff
-  newTag: latest
-- name: jarvis
-  newName: /jarvis-bff
-  newTag: 585bb7b4b0d1b29e4eb7f0f24cb6509551b3caac
+  - name: jarvis
+    newName: /jarvis-bff
+    newTag: 585bb7b4b0d1b29e4eb7f0f24cb6509551b3caac
